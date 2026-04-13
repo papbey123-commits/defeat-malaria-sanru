@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defeat Malaria SANRU - Secteur Privé</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #c41e3a;
+            --secondary: #14a085;
+            --accent: #e8f6f3;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --text: #2c3e50;
+            --danger: #e74c3c;
+            --warning: #f39c12;
+            --sanru-red: #c41e3a;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 0.5rem 5%;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--sanru-red);
+            line-height: 1.2;
+        }
+
+        .logo-text span {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--sanru-red);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--sanru-red) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+            margin-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            animation: slide 20s linear infinite;
+        }
+
+        @keyframes slide {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-50%, -50%); }
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .hero-logo {
+            width: 200px;
+            height: auto;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        .hero .date {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            animation: fadeInUp 1s ease 0.6s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--sanru-red);
+            border-radius: 2px;
+        }
+
+        /* Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--sanru-red);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(196, 30, 58, 0.1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--sanru-red);
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 5%;
+            margin: 0;
+            max-width: 100%;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--sanru-red);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            opacity: 0.8;
+            font-size: 1.1rem;
+        }
+
+        /* Problem Section */
+        .problem-section {
+            background: linear-gradient(to bottom, #fff5f5, #ffffff);
+        }
+
+        .alert-box {
+            background: white;
+            border-left: 5px solid var(--danger);
+            padding: 2rem;
+            border-radius: 0 15px 15px 0;
+            box-shadow: 0 5px 20px rgba(231, 76, 60, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .alert-box h3 {
+            color: var(--danger);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Strategy Section */
+        .strategy-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 1rem 2rem;
+            border: none;
+            background: white;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .tab-btn.active {
+            background: var(--sanru-red);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Tables */
+        .table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background: var(--sanru-red);
+            color: white;
+            padding: 1.2rem 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:hover {
+            background: rgba(196, 30, 58, 0.05);
+        }
+
+        .scenario-header {
+            background: var(--sanru-red);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px 15px 0 0;
+            margin-bottom: 0;
+        }
+
+        /* Financial Cards */
+        .financial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .financial-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--sanru-red);
+        }
+
+        .financial-card h4 {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .financial-card .amount {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        /* Risks Section */
+        .risks-list {
+            list-style: none;
+        }
+
+        .risks-list li {
+            padding: 1.5rem;
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+            transition: all 0.3s;
+        }
+
+        .risks-list li:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .risk-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--warning);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            width: 150px;
+            height: auto;
+            margin-bottom: 1rem;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .logo img {
+                height: 50px;
+            }
+            
+            .hero {
+                margin-top: 70px;
+            }
+            
+            .hero-logo {
+                width: 150px;
+            }
+            
+            section {
+                padding: 4rem 1rem;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="/mnt/kimi/upload/image.png" alt="SANRU Logo">
+                <div class="logo-text">
+                    Defeat Malaria
+                    <span>SANRU - Secteur Privé</span>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#contexte">Contexte</a></li>
+                <li><a href="#probleme">Problème</a></li>
+                <li><a href="#strategie">Stratégie</a></li>
+                <li><a href="#scenarios">Scénarios</a></li>
+                <li><a href="#perspectives">Perspectives</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <img src="/mnt/kimi/upload/image.png" alt="SANRU Logo" class="hero-logo">
+            <h1>Defeat Malaria SANRU</h1>
+            <p class="subtitle">Secteur Privé, Perspectives</p>
+            <span class="date">05/05/2025</span>
+        </div>
+        <div class="scroll-indicator">↓</div>
+    </section>
+
+    <!-- Contexte Section -->
+    <section id="contexte">
+        <div class="section-header">
+            <h2>Contexte et Justification</h2>
+            <p>Suivi des activités de la subvention</p>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card fade-in">
+                <div class="card-icon">🤝</div>
+                <h3>Partenariat Historique</h3>
+                <p>SANRU et le Fonds mondial : partenariat de longue date et productif avec une riche histoire de collaboration pour la santé publique.</p>
+            </div>
+            
+            <div class="card fade-in">
+                <div class="card-icon">⭐</div>
+                <h3>Leadership Reconnu</h3>
+                <p>Réputation accrue de SANRU et leaders dans le Secteur Privé (rapportage SP, modèle unique…) et ICR.</p>
+            </div>
+            
+            <div class="card fade-in">
+                <div class="card-icon">🏆</div>
+                <h3>Excellence Opérationnelle</h3>
+                <p>18 millions de traitements distribués à ce jour dans seulement 7 villes où SANRU est autorisé à travailler.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>18M+</h3>
+                <p>Traitements distribués</p>
+            </div>
+            <div class="stat-item">
+                <h3>8.5</h3>
+                <p>Traitements/minute</p>
+            </div>
+            <div class="stat-item">
+                <h3>35M$</h3>
+                <p>Économie réalisée</p>
+            </div>
+            <div class="stat-item">
+                <h3>18M</h3>
+                <p>Vies sauvées</p>
+            </div>
+            <div class="stat-item">
+                <h3>7</h3>
+                <p>Villes actives</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problème Section -->
+    <section id="probleme" class="problem-section">
+        <div class="section-header">
+            <h2>Problématique</h2>
+        </div>
+
+        <div class="alert-box fade-in">
+            <h3>⚠️ Arrêt de financement imminent</h3>
+            <p>Le financement de « Defeat Malaria » dans le secteur privé s'arrête au <strong>31 décembre 2025</strong> en raison des récentes restrictions financières internationales (Trump et modification du paysage financier).</p>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card fade-in">
+                <div class="card-icon">💔</div>
+                <h3>Nécessité Vitale</h3>
+                <p>Survie de SANRU en jeu. L'organisation doit trouver des solutions alternatives pour continuer son opération essentielle.</p>
+            </div>
+            
+            <div class="card fade-in">
+                <div class="card-icon">🏛️</div>
+                <h3>Héritage à Préserver</h3>
+                <p>Considérant l'héritage significatif laissé par cette initiative, SANRU souhaite pérenniser son impact.</p>
+            </div>
+            
+            <div class="card fade-in">
+                <div class="card-icon">💊</div>
+                <h3>Mission Continue</h3>
+                <p>Continuer à fournir des CTA (Combinaisons Thérapeutiques à base d'Artémisinine) de qualité garantie à prix abordables pour la population RDC.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stratégie Section -->
+    <section id="strategie">
+        <div class="section-header">
+            <h2>Stratégie de Réponse</h2>
+            <p>Actions Préconisées</p>
+        </div>
+
+        <div class="strategy-tabs">
+            <button class="tab-btn active" onclick="showTab('planA')">Plan A</button>
+            <button class="tab-btn" onclick="showTab('planB')">Plan B</button>
+        </div>
+
+        <div id="planA" class="tab-content active">
+            <div class="card">
+                <h3>Trouver des donateurs pour soutenir le projet selon le modèle actuel</h3>
+                <ul style="margin-top: 1rem; padding-left: 1.5rem; line-height: 2;">
+                    <li>Opportunités à explorer : <strong>JICA, FCDO...</strong></li>
+                    <li>Contacts assurés : Connexi, Hetero, etc.</li>
+                    <li>Status : <span style="color: var(--warning);">Résultats encore faibles</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="planB" class="tab-content">
+            <div class="card">
+                <h3>Lancer un projet similaire directement sur le marché privé sans apport des bailleurs</h3>
+                <ul style="margin-top: 1rem; padding-left: 1.5rem; line-height: 2;">
+                    <li>Utilisation d'un fond de commerce solide comme avantage</li>
+                    <li>Logo SANRU sur les produits (décision en attente - conflit avec statut Asbl?)</li>
+                    <li>Pas de logo feuille verte disponible</li>
+                    <li>Importateurs locaux contactés et prêts à soutenir</li>
+                    <li>Fabricants contactés et prêts à soutenir</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scénarios Section -->
+    <section id="scenarios">
+        <div class="section-header">
+            <h2>Modèles Financiers</h2>
+            <p>Scénarios de Viabilité</p>
+        </div>
+
+        <div class="cards-grid">
+            <!-- Scénario 0 -->
+            <div class="card fade-in">
+                <div class="scenario-header">
+                    <h3>Scénario 0 : Situation Statu Quo</h3>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <tr>
+                            <th colspan="2">Importateur</th>
+                        </tr>
+                        <tr>
+                            <td>PA</td>
+                            <td>0,42 $</td>
+                        </tr>
+                        <tr>
+                            <td>PV</td>
+                            <td>0,70 $</td>
+                        </tr>
+                        <tr>
+                            <td>Quantité</td>
+                            <td>5 078 897</td>
+                        </tr>
+                        <tr>
+                            <td>CA Annuel</td>
+                            <td>3 555 228 $</td>
+                        </tr>
+                        <tr style="background: rgba(196, 30, 58, 0.1); font-weight: bold;">
+                            <td>Redevance SANRU</td>
+                            <td>284 418 $/an</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Scénario I -->
+            <div class="card fade-in">
+                <div class="scenario-header" style="background: #a01830;">
+                    <h3>Scénario I : Stabilisation 7 Villes</h3>
+                    <small>6M cures/an, hausse prix modérée</small>
+                </div>
+                <div class="financial-grid">
+                    <div class="financial-card">
+                        <h4>Importateur</h4>
+                        <div class="amount">457 101 $</div>
+                    </div>
+                    <div class="financial-card">
+                        <h4>Fabricant</h4>
+                        <div class="amount">127 988 $</div>
+                    </div>
+                    <div class="financial-card" style="border-color: var(--sanru-red);">
+                        <h4>Total SANRU</h4>
+                        <div class="amount">585 089 $</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scénario II -->
+            <div class="card fade-in">
+                <div class="scenario-header" style="background: #801020;">
+                    <h3>Scénario II : Extension Nationale</h3>
+                    <small>6,6M cures/an minimum</small>
+                </div>
+                <div class="financial-grid">
+                    <div class="financial-card">
+                        <h4>Importateur</h4>
+                        <div class="amount">495 192 $</div>
+                    </div>
+                    <div class="financial-card">
+                        <h4>Fabricant</h4>
+                        <div class="amount">138 654 $</div>
+                    </div>
+                    <div class="financial-card" style="border-color: var(--sanru-red);">
+                        <h4>Total SANRU</h4>
+                        <div class="amount">633 846 $</div>
+                    </div>
+                </div>
+                <p style="margin-top: 1rem; color: #666; font-size: 0.9rem;">
+                    + Produits additionnels : SRO zinc, AI, Diabète, Cancer = gains supplémentaires
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Perspectives Section -->
+    <section id="perspectives">
+        <div class="section-header">
+            <h2>Défis, Risques et Perspectives</h2>
+        </div>
+
+        <ul class="risks-list">
+            <li class="fade-in">
+                <div class="risk-icon">1</div>
+                <div>
+                    <h4>Extension à d'autres produits</h4>
+                    <p>Gage de croissance future (SRO zinc, AI, Diabète, Cancer)</p>
+                </div>
+            </li>
+            <li class="fade-in">
+                <div class="risk-icon">2</div>
+                <div>
+                    <h4>Logo SANRU & Marketing</h4>
+                    <p>Utilisation du logo pour renforcer la reconnaissance et la confiance</p>
+                </div>
+            </li>
+            <li class="fade-in">
+                <div class="risk-icon">3</div>
+                <div>
+                    <h4>Gestion de la Communication</h4>
+                    <p>Coordination avec les partenaires actuels et futurs</p>
+                </div>
+            </li>
+            <li class="fade-in">
+                <div class="risk-icon">4</div>
+                <div>
+                    <h4>Perception Fiscale</h4>
+                    <p>Information ACOREP, PNLP, FEC - conformité réglementaire</p>
+                </div>
+            </li>
+            <li class="fade-in">
+                <div class="risk-icon">5</div>
+                <div>
+                    <h4>Modalités de Paiement</h4>
+                    <p>Autofinancement de 3 mois nécessaire vs cycle des ventes</p>
+                </div>
+            </li>
+            <li class="fade-in">
+                <div class="risk-icon">6</div>
+                <div>
+                    <h4>Nature de l'Entente</h4>
+                    <p>Définition claire des partenariats avec taux de redevance croissante</p>
+                </div>
+            </li>
+            <li class="fade-in">
+                <div class="risk-icon">7</div>
+                <div>
+                    <h4>PBF (Performance-Based Financing)</h4>
+                    <p>Intégration des mécanismes de financement basés sur la performance</p>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <img src="/mnt/kimi/upload/image.png" alt="SANRU Logo" class="footer-logo">
+            <div class="footer-text">Defeat Malaria SANRU</div>
+            <p>Secteur Privé - Santé Pour Tous et Par Tous</p>
+            <p style="margin-top: 1rem; opacity: 0.7;">05/05/2025 - Suivi des activités de la subvention</p>
+            <p style="margin-top: 2rem; font-size: 1.5rem; font-weight: 600;">MERCI</p>
+        </div>
+    </footer>
+
+    <script>
+        // Tab functionality
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
